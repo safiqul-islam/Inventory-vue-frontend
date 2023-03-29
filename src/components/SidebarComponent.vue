@@ -220,10 +220,10 @@ import { RouterLink } from 'vue-router';
                   </a>
                   <ul class="nav-submenu menu-content">
                     <li>
-                      <a href="login.html">
+                      <RouterLink :to="{name:'login'}">
                         <i data-feather="chevrons-right"></i>
                         Log in
-                      </a>
+                      </RouterLink>
                     </li>
                     <li>
                       <a href="signup.html">
