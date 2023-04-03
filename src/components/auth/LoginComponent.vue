@@ -1,24 +1,16 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { ref } from 'vue';
-import axios from 'axios'
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '../../stores/auth';
 
 
-const form = ref({
-    email:'',
-    password:'',
-})
+const usestore = useAuthStore();
+const {login} = usestore;
+const {email, password} = storeToRefs(usestore);
 
-
-const login = async() => {
-         const data = await axios.post('/api/auth/login',{
-            email:form.value.email,
-            password:form.value.password
-        })
-        console.log(data);
-    
-    }
-
+const formemail = ref(email);
+const formpassword = ref(password);
 
 
 </script>
@@ -42,7 +34,7 @@ const login = async() => {
                                                     <i data-feather="user"></i>
                                                 </div>
                                             </div>
-                                            <input type="email" v-model="form.email" class="form-control" placeholder="Enter Email" autocomplete="off">
+                                            <input type="email" v-model="formemail" class="form-control" placeholder="Enter Email" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -52,7 +44,7 @@ const login = async() => {
                                                     <i data-feather="mail"></i>
                                                 </div>
                                             </div>
-                                            <input type="password" v-model="form.password" id="pwd-input" class="form-control" placeholder="Password" autocomplete="off" >
+                                            <input type="password" v-model="formpassword" id="pwd-input" class="form-control" placeholder="Password" autocomplete="off" >
                                             <div class="input-group-apend">
                                                 <div class="input-group-text">
                                                     <i id="pwd-icon" class="far fa-eye-slash"></i>

@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import axios from 'axios'
+
+
+const profile = async() => {
+         const data = await axios.get('/api/auth/user-profile')
+        console.log(data);
+    }
+
+</script>
 <template>
 <div>
           <!-- Container-fluid start -->
@@ -9,6 +18,8 @@
                   <div class="page-header-left">
                     <h3>
                       Dashboard
+
+                      <button @click="profile">demo profile</button>
                       <small>Welcome to admin panel</small>
                     </h3>
                   </div>
